@@ -34,14 +34,21 @@ public class TinderBoltApp extends MultiSessionTelegramBot {
             sendPhotoMessage("main");
             String text = loadMessage("main");
             sendTextMessage(text);
+
+            showMainMenu("Главное меню бота", "/start",
+                    "Генерация Tinder-профиля \uD83D\uDE0E", "/profile",
+                    "Сообщение для знакомства \uD83E\uDD70", "/opener",
+                    "Переписка от вашего имени \uD83D\uDE08", "/message",
+                    "Переписка со звездами \uD83D\uDD25", "/date",
+                    "Общение с ChatGPT \uD83E\uDDE0", "/gpt");
             return;
         }
 
         if (message.equals("/gpt")) {
             currentMode = DialogMode.GPT;
             sendPhotoMessage("gpt");
-            sendTextMessage("ChatGPT готов к обработке вашего запроса");
-            sendTextMessage("Задайте мне вопрос.");
+            String text = loadMessage("gpt");
+            sendTextMessage(text);
             return;
         }
         if (currentMode == DialogMode.GPT) {
